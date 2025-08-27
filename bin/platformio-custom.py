@@ -105,7 +105,8 @@ except subprocess.CalledProcessError:
     repo_owner = "unknown"
 
 jsonLoc = env["PROJECT_DIR"] + "/userPrefs.jsonc"
-with open(jsonLoc) as f:
+# with open(jsonLoc) as f:
+with open(jsonLoc, encoding="utf-8") as f: #UnicodeDecodeError: 'cp950' codec can't decode byte 0x94 in position 5085: illegal multibyte sequenc 不確定怎麼解決
     jsonStr = re.sub("//.*","", f.read(), flags=re.MULTILINE)
     userPrefs = json.loads(jsonStr)
 

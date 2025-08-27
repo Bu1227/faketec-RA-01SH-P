@@ -144,6 +144,10 @@ Core1262 has TCXO
 */
 // #define SX126X_DIO3_TCXO_VOLTAGE 1.8
 
+// RA-01SH-P 需要限制SX1262功率為3dbm，如果使用無PA晶片需註解
+// Datasheet: https://aithinker-static.oss-cn-shenzhen.aliyuncs.com/docs/Specification/Ra-01SH-P_V1.0.2%20%E8%A7%84%E6%A0%BC%E4%B9%A6-20250702.pdf
+#define SX126X_MAX_POWER 3
+
 #ifdef __cplusplus
 }
 #endif

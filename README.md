@@ -1,3 +1,8 @@
+## Fork說明
+此分支將 Tx Power 限制在 3dbm，防止使用 RA-01SH-P 晶片的 [fakeTec](https://github.com/gargomoma/fakeTec_pcb) 裝置 PA晶片燒毀
+## Fork Description
+This fork limits Tx Power to 3dBm to prevent PA chip damage on [fakeTec](https://github.com/gargomoma/fakeTec_pcb) devices using the RA-01SH-P module.
+
 <div align="center" markdown="1">
 
 <img src=".github/meshtastic_logo.png" alt="Meshtastic Logo" width="80"/>
