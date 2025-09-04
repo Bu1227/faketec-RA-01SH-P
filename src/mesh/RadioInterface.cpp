@@ -23,12 +23,12 @@ const RegionInfo regions[] = {
         https://link.springer.com/content/pdf/bbm%3A978-1-4842-4357-2%2F1.pdf
         https://www.thethingsnetwork.org/docs/lorawan/regional-parameters/
     */
-    RDEF(US, 902.0f, 928.0f, 100, 0, 30, true, false, false),
+    RDEF(US, 902.0f, 928.0f, 100, 0, 3, true, false, false),
 
     /*
         https://lora-alliance.org/wp-content/uploads/2020/11/lorawan_regional_parameters_v1.0.3reva_0.pdf
      */
-    RDEF(EU_433, 433.0f, 434.0f, 10, 0, 12, true, false, false),
+    RDEF(EU_433, 433.0f, 434.0f, 10, 0, 3, true, false, false),
 
     /*
        https://www.thethingsnetwork.org/docs/lorawan/duty-cycle/
@@ -44,25 +44,25 @@ const RegionInfo regions[] = {
        AFA) to avoid a duty cycle. (Please refer to line P page 22 of this document.)
        https://www.etsi.org/deliver/etsi_en/300200_300299/30022002/03.01.01_60/en_30022002v030101p.pdf
      */
-    RDEF(EU_868, 869.4f, 869.65f, 10, 0, 27, false, false, false),
+    RDEF(EU_868, 869.4f, 869.65f, 10, 0, 3, false, false, false),
 
     /*
         https://lora-alliance.org/wp-content/uploads/2020/11/lorawan_regional_parameters_v1.0.3reva_0.pdf
      */
-    RDEF(CN, 470.0f, 510.0f, 100, 0, 19, true, false, false),
+    RDEF(CN, 470.0f, 510.0f, 100, 0, 3, true, false, false),
 
     /*
         https://lora-alliance.org/wp-content/uploads/2020/11/lorawan_regional_parameters_v1.0.3reva_0.pdf
         https://www.arib.or.jp/english/html/overview/doc/5-STD-T108v1_5-E1.pdf
         https://qiita.com/ammo0613/items/d952154f1195b64dc29f
      */
-    RDEF(JP, 920.5f, 923.5f, 100, 0, 13, true, false, false),
+    RDEF(JP, 920.5f, 923.5f, 100, 0, 3, true, false, false),
 
     /*
         https://www.iot.org.au/wp/wp-content/uploads/2016/12/IoTSpectrumFactSheet.pdf
         https://iotalliance.org.nz/wp-content/uploads/sites/4/2019/05/IoT-Spectrum-in-NZ-Briefing-Paper.pdf
      */
-    RDEF(ANZ, 915.0f, 928.0f, 100, 0, 30, true, false, false),
+    RDEF(ANZ, 915.0f, 928.0f, 100, 0, 3, true, false, false),
 
     /*
         https://digital.gov.ru/uploaded/files/prilozhenie-12-k-reshenyu-gkrch-18-46-03-1.pdf
@@ -70,13 +70,13 @@ const RegionInfo regions[] = {
         Note:
             - We do LBT, so 100% is allowed.
      */
-    RDEF(RU, 868.7f, 869.2f, 100, 0, 20, true, false, false),
+    RDEF(RU, 868.7f, 869.2f, 100, 0, 3, true, false, false),
 
     /*
         https://www.law.go.kr/LSW/admRulLsInfoP.do?admRulId=53943&efYd=0
         https://resources.lora-alliance.org/technical-specifications/rp002-1-0-4-regional-parameters
      */
-    RDEF(KR, 920.0f, 923.0f, 100, 0, 23, true, false, false),
+    RDEF(KR, 920.0f, 923.0f, 100, 0, 3, true, false, false),
 
     /*
         Taiwan, 920-925Mhz, limited to 0.5W indoor or coastal, 1.0W outdoor.
@@ -84,42 +84,42 @@ const RegionInfo regions[] = {
         https://www.ncc.gov.tw/english/files/23070/102_5190_230703_1_doc_C.PDF
         https://gazette.nat.gov.tw/egFront/e_detail.do?metaid=147283
      */
-    RDEF(TW, 920.0f, 925.0f, 100, 0, 27, true, false, false),
+    RDEF(TW, 920.0f, 925.0f, 100, 0, 3, true, false, false),
 
     /*
         https://lora-alliance.org/wp-content/uploads/2020/11/lorawan_regional_parameters_v1.0.3reva_0.pdf
      */
-    RDEF(IN, 865.0f, 867.0f, 100, 0, 30, true, false, false),
+    RDEF(IN, 865.0f, 867.0f, 100, 0, 3, true, false, false),
 
     /*
          https://rrf.rsm.govt.nz/smart-web/smart/page/-smart/domain/licence/LicenceSummary.wdk?id=219752
          https://iotalliance.org.nz/wp-content/uploads/sites/4/2019/05/IoT-Spectrum-in-NZ-Briefing-Paper.pdf
       */
-    RDEF(NZ_865, 864.0f, 868.0f, 100, 0, 36, true, false, false),
+    RDEF(NZ_865, 864.0f, 868.0f, 100, 0, 3, true, false, false),
 
     /*
        https://lora-alliance.org/wp-content/uploads/2020/11/lorawan_regional_parameters_v1.0.3reva_0.pdf
     */
-    RDEF(TH, 920.0f, 925.0f, 100, 0, 16, true, false, false),
+    RDEF(TH, 920.0f, 925.0f, 100, 0, 3, true, false, false),
 
     /*
         433,05-434,7 Mhz 10 mW
         https://nkrzi.gov.ua/images/upload/256/5810/PDF_UUZ_19_01_2016.pdf
     */
-    RDEF(UA_433, 433.0f, 434.7f, 10, 0, 10, true, false, false),
+    RDEF(UA_433, 433.0f, 434.7f, 10, 0, 3, true, false, false),
 
     /*
         868,0-868,6 Mhz 25 mW
         https://nkrzi.gov.ua/images/upload/256/5810/PDF_UUZ_19_01_2016.pdf
     */
-    RDEF(UA_868, 868.0f, 868.6f, 1, 0, 14, true, false, false),
+    RDEF(UA_868, 868.0f, 868.6f, 1, 0, 3, true, false, false),
 
     /*
         Malaysia
         433 - 435 MHz at 100mW, no restrictions.
         https://www.mcmc.gov.my/skmmgovmy/media/General/pdf/Short-Range-Devices-Specification.pdf
     */
-    RDEF(MY_433, 433.0f, 435.0f, 100, 0, 20, true, false, false),
+    RDEF(MY_433, 433.0f, 435.0f, 100, 0, 3, true, false, false),
 
     /*
         Malaysia
@@ -128,14 +128,14 @@ const RegionInfo regions[] = {
         Frequency hopping is used for 919 - 923 MHz.
         https://www.mcmc.gov.my/skmmgovmy/media/General/pdf/Short-Range-Devices-Specification.pdf
     */
-    RDEF(MY_919, 919.0f, 924.0f, 100, 0, 27, true, true, false),
+    RDEF(MY_919, 919.0f, 924.0f, 100, 0, 3, true, true, false),
 
     /*
         Singapore
         SG_923 Band 30d: 917 - 925 MHz at 100mW, no restrictions.
         https://www.imda.gov.sg/-/media/imda/files/regulation-licensing-and-consultations/ict-standards/telecommunication-standards/radio-comms/imdatssrd.pdf
     */
-    RDEF(SG_923, 917.0f, 925.0f, 100, 0, 20, true, false, false),
+    RDEF(SG_923, 917.0f, 925.0f, 100, 0, 3, true, false, false),
 
     /*
         Philippines
@@ -145,18 +145,18 @@ const RegionInfo regions[] = {
                 https://github.com/meshtastic/firmware/issues/4948#issuecomment-2394926135
     */
 
-    RDEF(PH_433, 433.0f, 434.7f, 100, 0, 10, true, false, false), RDEF(PH_868, 868.0f, 869.4f, 100, 0, 14, true, false, false),
-    RDEF(PH_915, 915.0f, 918.0f, 100, 0, 24, true, false, false),
+    RDEF(PH_433, 433.0f, 434.7f, 100, 0, 3, true, false, false), RDEF(PH_868, 868.0f, 869.4f, 100, 0, 3, true, false, false),
+    RDEF(PH_915, 915.0f, 918.0f, 100, 0, 3, true, false, false),
 
     /*
        2.4 GHZ WLAN Band equivalent. Only for SX128x chips.
     */
-    RDEF(LORA_24, 2400.0f, 2483.5f, 100, 0, 10, true, false, true),
+    RDEF(LORA_24, 2400.0f, 2483.5f, 100, 0, 3, true, false, true),
 
     /*
         This needs to be last. Same as US.
     */
-    RDEF(UNSET, 902.0f, 928.0f, 100, 0, 30, true, false, false)
+    RDEF(UNSET, 902.0f, 928.0f, 100, 0, 3, true, false, false)
 
 };
 
