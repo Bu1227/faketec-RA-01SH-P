@@ -16,6 +16,19 @@
 #define RF95_MAX_POWER 20
 #endif
 
+#ifdef RF95_ALLOW_20DBM_TX_POWER
+static int8_t normalizeRequestedRF95Power(int8_t requestedPower)
+{
+    if (requestedPower <= 0)
+        return RF95_MAX_POWER;
+
+    if (requestedPower > RF95_MAX_POWER)
+        return RF95_MAX_POWER;
+
+    return requestedPower;
+}
+#endif
+
 // if we use 20 we are limited to 1% duty cycle or hw might overheat.  For continuous operation set a limit of 17
 // In theory up to 27 dBm is possible, but the modules installed in most radios can cope with a max of 20.  So BIG WARNING
 // if you set power to something higher than 17 or 20 you might fry your board.
@@ -113,7 +126,16 @@ void RF95Interface::setTransmitEnable(bool txon)
 /// \return true if initialisation succeeded.
 bool RF95Interface::init()
 {
+#ifdef RF95_ALLOW_20DBM_TX_POWER
+    const int8_t requestedTxPower = config.lora.tx_power;
+#endif
+
     RadioLibInterface::init();
+
+#ifdef RF95_ALLOW_20DBM_TX_POWER
+    power = normalizeRequestedRF95Power(requestedTxPower);
+    config.lora.tx_power = power;
+#endif
 
 #if defined(RADIOMASTER_900_BANDIT_NANO) || defined(RADIOMASTER_900_BANDIT)
     // DAC and DB values based on dBm using interpolation
@@ -122,7 +144,12 @@ bool RF95Interface::init()
     power = dacDbValues.db;
 #endif
 
+#ifndef RF95_ALLOW_20DBM_TX_POWER
     limitPower(RF95_MAX_POWER);
+#else
+    if (power > RF95_MAX_POWER)
+        power = RF95_MAX_POWER;
+#endif
 
     iface = lora = new RadioLibRF95(&module);
 
@@ -200,7 +227,16 @@ void INTERRUPT_ATTR RF95Interface::disableInterrupt()
 
 bool RF95Interface::reconfigure()
 {
+#ifdef RF95_ALLOW_20DBM_TX_POWER
+    const int8_t requestedTxPower = config.lora.tx_power;
+#endif
+
     RadioLibInterface::reconfigure();
+
+#ifdef RF95_ALLOW_20DBM_TX_POWER
+    power = normalizeRequestedRF95Power(requestedTxPower);
+    config.lora.tx_power = power;
+#endif
 
     // set mode to standby
     setStandby();
