@@ -21,26 +21,26 @@ extern "C" {
 /*
 NRF52 PRO MICRO PIN ASSIGNMENT
 
-| Pin   | Function   |   | Pin     | Function    |
-|-------|------------|---|---------|-------------|
-| Gnd   |            |   | vbat    |             |
-| P0.06 | Serial2 RX |   | vbat    |             |
-| P0.08 | Serial2 TX |   | Gnd     |             |
-| Gnd   |            |   | reset   |             |
-| Gnd   |            |   | ext_vcc | *see 0.13   |
-| P0.17 | RXEN       |   | P0.31   | BATTERY_PIN |
-| P0.20 | GPS_RX     |   | P0.29   | BUSY        |
-| P0.22 | GPS_TX     |   | P0.02   | MISO        |
-| P0.24 | GPS_EN     |   | P1.15   | MOSI        |
-| P1.00 | BUTTON_PIN |   | P1.13   | CS          |
-| P0.11 | SCL        |   | P1.11   | SCK         |
-| P1.04 | SDA        |   | P0.10   | DIO1/IRQ    |
-| P1.06 | Free pin   |   | P0.09   | RESET       |
-|       |            |   |         |             |
-|       | Mid board  |   |         | Internal    |
-| P1.01 | Free pin   |   | 0.15    | LED         |
-| P1.02 | Free pin   |   | 0.13    | 3V3_EN      |
-| P1.07 | Free pin   |   |         |             |
+| Pin   | Function   |   | Pin     | Function     |
+|-------|------------|---|---------|--------------|
+| Gnd   |            |   | vbat    |              |
+| P0.06 | Serial2 RX |   | vbat    |              |
+| P0.08 | Serial2 TX |   | Gnd     |              |
+| Gnd   |            |   | reset   |              |
+| Gnd   |            |   | ext_vcc | *see 0.13    |
+| P0.17 | Free pin   |   | P0.31   | BATTERY_PIN  |
+| P0.20 | GPS_RX     |   | P0.29   | Free pin     |
+| P0.22 | GPS_TX     |   | P0.02   | MISO         |
+| P0.24 | GPS_EN     |   | P1.15   | MOSI         |
+| P1.00 | BUTTON_PIN |   | P1.13   | CS           |
+| P0.11 | SCL        |   | P1.11   | SCK          |
+| P1.04 | SDA        |   | P0.10   | DIO0/IRQ     |
+| P1.06 | Free pin   |   | P0.09   | RESET        |
+|       |            |   |         |              |
+|       | Mid board  |   |         | Internal     |
+| P1.01 | Free pin   |   | 0.15    | LED          |
+| P1.02 | Free pin   |   | 0.13    | 3V3_EN       |
+| P1.07 | Free pin   |   |         |              |
 */
 
 // Number of pins defined in PinDescription array
@@ -112,45 +112,24 @@ NRF52 PRO MICRO PIN ASSIGNMENT
 #define PIN_SPI_SCK (32 + 11)  // P1.11
 
 // LORA MODULES
-#define USE_LLCC68
-#define USE_SX1262
-// #define USE_RF95
-#define USE_SX1268
+// Adafruit RFM95W uses the Semtech SX127x/RFM95 driver path, not SX126x/LLCC68.
+#define USE_RF95
 
-// LORA CONFIG
-#define SX126X_CS (32 + 13)      // P1.13 FIXME - we really should define LORA_CS instead
-#define SX126X_DIO1 (0 + 10)     // P0.10 IRQ
-#define SX126X_DIO2_AS_RF_SWITCH // Note for E22 modules: DIO2 is not attached internally to TXEN for automatic TX/RX switching,
-                                 // so it needs connecting externally if it is used in this way
-#define SX126X_BUSY (0 + 29)     // P0.29
-#define SX126X_RESET (0 + 9)     // P0.09
-#define SX126X_RXEN (0 + 17)     // P0.17
-#define SX126X_TXEN RADIOLIB_NC  // Assuming that DIO2 is connected to TXEN pin. If not, TXEN must be connected.
+// LORA CONFIG - Adafruit RFM95W / SX127x
+#define LORA_CS (32 + 13)       // P1.13 -> RFM95W CS
+#define LORA_DIO0 (0 + 10)      // P0.10 -> RFM95W G0 / DIO0 / IRQ
+#define LORA_RESET (0 + 9)      // P0.09 -> RFM95W RST
+#define LORA_DIO1 RADIOLIB_NC   // Not required by Meshtastic RF95Interface
+#define LORA_DIO2 RADIOLIB_NC   // Not required by Meshtastic RF95Interface
 
-/*
-On the SX1262, DIO3 sets the voltage for an external TCXO, if one is present. If one is not present, then this should not be used.
-
-Ebyte
-e22-900mm22s has no TCXO
-e22-900m22s has TCXO
-e220-900mm22s has no TCXO, works with/without this definition, looks like DIO3 not connected at all
-
-AI-thinker
-RA-01SH does not have TCXO
-
-Waveshare
-Core1262 has TCXO
-
-*/
-// #define SX126X_DIO3_TCXO_VOLTAGE 1.8
+// Adafruit RFM95W uses the PA_BOOST output path and supports up to 20 dBm.
+// Do not define USE_RF95_RFO for this module, or RadioLib will use the lower-power RFO path.
+#define RF95_MAX_POWER 20
+#define RF95_ALLOW_20DBM_TX_POWER
 
 #ifdef __cplusplus
 }
 #endif
-
-// RA-01SH-P 需要限制SX1262功率為3dbm，如果使用無PA晶片需註解
-// Datasheet: https://aithinker-static.oss-cn-shenzhen.aliyuncs.com/docs/Specification/Ra-01SH-P_V1.0.2%20%E8%A7%84%E6%A0%BC%E4%B9%A6-20250702.pdf
-#define SX126X_MAX_POWER 3
 
 /*----------------------------------------------------------------------------
  *        Arduino objects - C++ only
